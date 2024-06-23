@@ -12,10 +12,12 @@ const FactureList = (props) => {
         <table className="table table-bordered table-darck mb-0" style={{ backgroundColor: 'white', color: 'black', borderColor: 'black' }}>
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
+              <th scope="col">idFacture</th>
+              <th scope="col">client</th>
+              <th scope="col">MontantH.T</th>
+              <th scope="col">TVA</th>
+              <th scope="col">MonatantTTC</th>
+              <th scope="col">DeatailFacture</th>
             </tr>
           </thead>
           <tbody>
@@ -24,28 +26,22 @@ const FactureList = (props) => {
               <td>Mark</td>
               <td>Otto</td>
               <td>@mdo</td>
-              <td className="d-flex">
-                <div>
-                  <button type="button" className="btn btn-success rounded-circle" style={{ width: '40px', height: '40px', padding: '0' }}>
-                    <strong>+</strong>
-                  </button>
-                </div>
-                <div>
-                  <button type="button" className="btn btn-success rounded-circle" style={{ width: '40px', height: '40px', padding: '0' }}>
-                    <strong>+</strong>
-                  </button>
-                </div>
-              </td>
+              <td></td>
+              <td></td>
             </tr>
             <tr>
               <th scope="row">2</th>
               <td>Jacob</td>
               <td>Thornton</td>
               <td>@fat</td>
+              <td>@fat</td>
+              <td>@fat</td>
             </tr>
             <tr>
               <th scope="row">3</th>
               <td colSpan="2">Larry the Bird</td>
+              <td>@twitter</td>
+              <td>@twitter</td>
               <td>@twitter</td>
             </tr>
           </tbody>
