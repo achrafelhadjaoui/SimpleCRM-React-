@@ -11,10 +11,11 @@ const BtnCreerFacture = (props) => {
 };
 
 
-const BtnCreerArticle = () => {
+const BtnCreerArticle = (props) => {
+  const {AddArticle} = props
   return (
     <div className="container d-flex justify-content-end mt-3">
-          <button type="button" className="btn btn-success rounded-circle" style={{ width: '40px', height: '40px', padding: '0' }}>
+          <button type="button" className="btn btn-success rounded-circle" style={{ width: '40px', height: '40px', padding: '0' }} onClick={AddArticle}>
             <strong>+</strong>
           </button>
     </div>

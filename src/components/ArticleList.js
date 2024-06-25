@@ -2,7 +2,9 @@ import React from "react";
 import Article from "./Article";
 import { BtnCreerArticle } from "./Buttons";
 
-const ArticleList = () => {
+const ArticleList = (props) => {
+  const { AddArticle } = props;
+
   return (
     <div className="container">
       <table
@@ -22,9 +24,13 @@ const ArticleList = () => {
             <th scope="col">Montant</th>
           </tr>
         </thead>
-        <Article />
+        <Article
+          creeArticle={props.creeArticle}
+          ArticleInputChange={props.ArticleInputChange}
+          creeFacture={props.creeFacture}
+        />
       </table>
-      <BtnCreerArticle />
+      <BtnCreerArticle AddArticle={AddArticle} />
     </div>
   );
 };

@@ -1,93 +1,83 @@
 import React from "react";
 
-const Article = () => {
-  return (
-    // <div>
-    //   <input type="text" placeholder="Article" />
-    //   <input type="number" placeholder="Quantité" />
-    //   <input type="number" placeholder="Prix" />
-    //   <input type="number" placeholder="Remise" />
-    //   <input type="number" placeholder="Montant" readOnly />
-    // </div>
+const Article = (props) => {
+  const { Article, Quantite, Prix, Remise, Montant } = props.creeArticle;
+  const { ArticleInputChange } = props;
+  const { articles } = props.creeFacture;
 
+  return (
     <tbody>
+      {articles.map((article, index) => (
+        <tr key={index}>
+          <th scope="row">{article.Article}</th>
+          <td>{article.Quantite}</td>
+          <td>{article.Prix}</td>
+          <td>{article.Remise}</td>
+          <td>{article.Montant}</td>
+        </tr>
+      ))}
       <tr>
         <th scope="row">
           <select
             className="selectpicker"
             data-style="btn-success"
+            id="Article"
+            name="Article"
+            value={Article}
+            onChange={ArticleInputChange}
             style={{ border: "none" }}
           >
-            <option>Pizzas</option>
-            <option>Burger</option>
-            <option>Ice Cream</option>
-            <option>Fried Potatoes</option>
+            <option value="">Select an option</option>
+            <option value="Pizzas">Pizzas</option>
+            <option value="Burger">Burger</option>
+            <option value="Ice Cream">Ice Cream</option>
+            <option value="Fried Potatoes">Fried Potatoes</option>
           </select>
         </th>
         <td>
           <input
-            type="text"
+            type="number"
             className="form-control"
-            id="factureA"
-            name="factureA"
-            // value={creeFacture.factureA}
-            // onChange={handleInputChange}
+            id="Quantite"
+            name="Quantite"
+            value={Quantite}
+            onChange={ArticleInputChange}
             style={{ border: "none" }}
           />
         </td>
         <td>
           <input
-            type="text"
+            type="number"
             className="form-control"
-            id="factureA"
-            name="factureA"
-            // value={creeFacture.factureA}
-            // onChange={handleInputChange}
+            id="Prix"
+            name="Prix"
+            value={Prix}
+            onChange={ArticleInputChange}
             style={{ border: "none" }}
           />
         </td>
         <td>
           <input
-            type="text"
+            type="number"
             className="form-control"
-            id="factureA"
-            name="factureA"
-            // value={creeFacture.factureA}
-            // onChange={handleInputChange}
+            id="Remise"
+            name="Remise"
+            value={Remise}
+            onChange={ArticleInputChange}
             style={{ border: "none" }}
           />
         </td>
         <td>
           <input
-            type="text"
+            type="number"
             className="form-control"
-            id="factureA"
-            name="factureA"
-            // value={creeFacture.factureA}
-            // onChange={handleInputChange}
+            id="Montant"
+            name="Montant"
+            value={Montant}
+            onChange={ArticleInputChange}
             style={{ border: "none" }}
           />
         </td>
-        {/* <td className="d-flex">
-              <div>
-                <button
-                  type="button"
-                  className="btn btn-success rounded-circle"
-                  style={{ width: "40px", height: "40px", padding: "0" }}
-                >
-                  <strong>+</strong>
-                </button>
-              </div>
-              <div>
-                <button
-                  type="button"
-                  className="btn btn-success rounded-circle"
-                  style={{ width: "40px", height: "40px", padding: "0" }}
-                >
-                  <strong>+</strong>
-                </button>
-              </div>
-            </td> */}
       </tr>
     </tbody>
   );

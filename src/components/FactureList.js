@@ -1,15 +1,22 @@
-import React from 'react';
-import AjouterDetailsFacture from './AjouterDetailsFacture';
-import ArticleList from './ArticleList';
-import Banner from './Banner';
-import {BtnCreerFacture} from "./Buttons";
+import React from "react";
+import AjouterDetailsFacture from "./AjouterDetailsFacture";
+import ArticleList from "./ArticleList";
+import Banner from "./Banner";
+import { BtnCreerFacture } from "./Buttons";
 
 const FactureList = (props) => {
   return (
     <>
       <Banner />
       <div className="container">
-        <table className="table table-bordered table-darck mb-0" style={{ backgroundColor: 'white', color: 'black', borderColor: 'black' }}>
+        <table
+          className="table table-bordered table-darck mb-0"
+          style={{
+            backgroundColor: "white",
+            color: "black",
+            borderColor: "black",
+          }}
+        >
           <thead>
             <tr>
               <th scope="col">idFacture</th>
@@ -21,29 +28,16 @@ const FactureList = (props) => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">16466485434165</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colSpan="2">Larry the Bird</td>
-              <td>@twitter</td>
-              <td>@twitter</td>
-              <td>@twitter</td>
-            </tr>
+            {props.factures.map((facture, index) => (
+              <tr key={index}>
+                <th>16466485434165</th>
+                <td>{facture.idFacture}</td>
+                <td>{facture.dateFacture}</td>
+                <td>{facture.factureA}</td>
+                <td></td>
+                <td></td>
+              </tr>
+            ))}
           </tbody>
         </table>
         <BtnCreerFacture showAjouterFacture={props.showAjouterFacture} />

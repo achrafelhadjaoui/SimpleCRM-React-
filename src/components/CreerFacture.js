@@ -3,7 +3,8 @@ import Banner from "./Banner";
 import ArticleList from "./ArticleList";
 
 const CreerFacture = (props) => {
-  const {idFacture, dateFacture, factureA} = props.creeFacture
+  const {idFacture, dateFacture, factureA,} = props.creeFacture
+  const {AddArticle} = props
   return (
     <>
       <Banner BackToLisit={props.BackToLisit} />
@@ -22,7 +23,7 @@ const CreerFacture = (props) => {
               id="idFacture"
               name="idFacture"
               value={idFacture}
-              onChange={props.handleInputChange}
+              onChange={props.FactureInputChange}
             />
           </div>
           <div className="col-12 col-md-3 mb-3">
@@ -30,12 +31,12 @@ const CreerFacture = (props) => {
               dateFacture
             </label>
             <input
-              type="text"
+              type="date"
               className="form-control"
               id="dateFacture"
               name="dateFacture"
               value={dateFacture}
-              onChange={props.handleInputChange}
+              onChange={props.FactureInputChange}
             />
           </div>
           <div className="col-12 col-md-3 mb-3">
@@ -48,7 +49,7 @@ const CreerFacture = (props) => {
               id="factureA"
               name="factureA"
               value={factureA}
-              onChange={props.handleInputChange}
+              onChange={props.FactureInputChange}
             />
           </div>
           <div className="col-12 col-md-3 mb-3 d-flex justify-content-center align-items-center">
@@ -63,7 +64,7 @@ const CreerFacture = (props) => {
           </div>
         </div>
       </div>
-      <ArticleList />
+      <ArticleList AddArticle={AddArticle} creeArticle={props.creeArticle} ArticleInputChange={props.ArticleInputChange} creeFacture={props.creeFacture}/>
     </>
   );
 };
