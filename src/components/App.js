@@ -2,6 +2,8 @@ import React from "react";
 import FactureList from "./FactureList";
 import CreerFacture from "./CreerFacture";
 
+import FactureDetails from "./FactureDetails";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -21,6 +23,8 @@ class App extends React.Component {
         Remise: "",
         Montant: "",
       },
+
+      selectedFacture: null, // To store the facture to be viewed
     };
 
     this.showAjouterFacture = this.showAjouterFacture.bind(this);
@@ -30,6 +34,11 @@ class App extends React.Component {
     this.AddArticle = this.AddArticle.bind(this);
     this.ShowFacturesList = this.ShowFacturesList.bind(this);
     this.ArticleInputChange = this.ArticleInputChange.bind(this);
+    this.viewFacture = this.viewFacture.bind(this); // Bind the new method
+    this.MontanCount = this.MontanCount.bind(this);
+    this.calculateTotalAmount = this.calculateTotalAmount.bind(this);
+    this.calculateTVA = this.calculateTVA.bind(this);
+    this.calculateTotalTTC = this.calculateTotalTTC.bind(this);
   }
 
   showAjouterFacture() {
@@ -38,6 +47,37 @@ class App extends React.Component {
 
   ShowFacturesList() {
     this.setState({ currentComponent: "FactureList" });
+  }
+
+   // View facture details
+   viewFacture(facture) {
+    this.setState({ selectedFacture: facture, currentComponent: "FactureDetails" });
+  }
+
+  // Monatant count
+  MontanCount(Quantite, Prix, Remise) {
+    let res = Prix * Quantite;
+    let toDecemal = Remise / 100;
+
+    return (res = res * (1 - toDecemal))
+  }
+
+  // Montant H_T
+  calculateTotalAmount(articles) {
+    return articles.reduce((total, article) => {
+      const { Quantite, Prix, Remise } = article;
+      return total + this.MontanCount(Quantite, Prix, Remise);
+    }, 0);
+  }
+
+  // Calculate TVA
+  calculateTVA(totalAmount, tvaRate = 20) { // Assuming 20% TVA rate
+    return (totalAmount * tvaRate) / 100;
+  }
+
+  // Calculate Total TTC
+  calculateTotalTTC(totalAmount, tva) {
+    return totalAmount + tva;
   }
 
   // back to facture list
@@ -77,7 +117,7 @@ class App extends React.Component {
       localStorage.setItem("facturesList", JSON.stringify(updatedFacturesList));
 
       this.setState({
-        creeFacture: { idFacture: "", dateFacture: "", factureA: "",},
+        creeFacture: { idFacture: "", dateFacture: "", factureA: "", articles: []},
         facturesList: updatedFacturesList,
       });
 
@@ -93,7 +133,7 @@ class App extends React.Component {
     if (!idFacture || !dateFacture || !factureA) {
       alert("Fill all the data!");
     } 
-    else if (!Article || !Quantite || !Prix || !Remise || !Montant) {
+    else if (!Article || !Quantite || !Prix || !Remise) {
       alert("Fill all the data!");
     } 
     else {
@@ -122,14 +162,18 @@ class App extends React.Component {
   // Ajouter nom de client
 
   render() {
-    const { currentComponent, facturesList } = this.state;
+    const { currentComponent, facturesList, selectedFacture } = this.state;
 
     return (
       <>
         {currentComponent === "FactureList" && (
           <FactureList
             showAjouterFacture={this.showAjouterFacture}
-            factures={facturesList}
+            factures={facturesList} 
+            viewFacture={this.viewFacture} // Pass the view method
+            calculateTotalAmount={this.calculateTotalAmount}
+            calculateTVA={this.calculateTVA} // Pass the calculateTVA function
+            calculateTotalTTC={this.calculateTotalTTC} // Pass the calculateTotalTTC function
           />
         )}
         {currentComponent === "CreerFacture" && (
@@ -141,6 +185,13 @@ class App extends React.Component {
             creeArticle={this.state.creeArticle}
             AddFacture={this.AddFacture}
             AddArticle={this.AddArticle}
+            MontanCount={this.MontanCount}
+          />
+        )}
+        {currentComponent === "FactureDetails" && (
+          <FactureDetails
+            facture={selectedFacture}
+            BackToLisit={this.BackToLisit} // Pass the method to go back to the list
           />
         )}
       </>

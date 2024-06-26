@@ -2,18 +2,21 @@ import React from "react";
 
 const Article = (props) => {
   const { Article, Quantite, Prix, Remise, Montant } = props.creeArticle;
-  const { ArticleInputChange } = props;
+  const { ArticleInputChange, MontanCount } = props;
   const { articles } = props.creeFacture;
 
+  const articleList = articles || [];
+
   return (
+
     <tbody>
-      {articles.map((article, index) => (
+      {articleList.map((article, index) => (
         <tr key={index}>
           <th scope="row">{article.Article}</th>
           <td>{article.Quantite}</td>
           <td>{article.Prix}</td>
-          <td>{article.Remise}</td>
-          <td>{article.Montant}</td>
+          <td>{article.Remise}%</td>
+          <td>{article.Montant = MontanCount(article.Quantite, article.Prix, article.Remise)}</td>
         </tr>
       ))}
       <tr>
@@ -68,15 +71,7 @@ const Article = (props) => {
           />
         </td>
         <td>
-          <input
-            type="number"
-            className="form-control"
-            id="Montant"
-            name="Montant"
-            value={Montant}
-            onChange={ArticleInputChange}
-            style={{ border: "none" }}
-          />
+          {MontanCount(Quantite, Prix, Remise)}DH
         </td>
       </tr>
     </tbody>

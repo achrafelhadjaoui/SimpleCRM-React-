@@ -28,6 +28,7 @@ const ArticleList = (props) => {
           creeArticle={props.creeArticle}
           ArticleInputChange={props.ArticleInputChange}
           creeFacture={props.creeFacture}
+          MontanCount={props.MontanCount}
         />
       </table>
       <BtnCreerArticle AddArticle={AddArticle} />

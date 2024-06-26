@@ -3,8 +3,8 @@ import Banner from "./Banner";
 import ArticleList from "./ArticleList";
 
 const CreerFacture = (props) => {
-  const {idFacture, dateFacture, factureA,} = props.creeFacture
-  const {AddArticle} = props
+  const { idFacture, dateFacture, factureA } = props.creeFacture;
+  const { AddArticle } = props;
   return (
     <>
       <Banner BackToLisit={props.BackToLisit} />
@@ -64,7 +64,13 @@ const CreerFacture = (props) => {
           </div>
         </div>
       </div>
-      <ArticleList AddArticle={AddArticle} creeArticle={props.creeArticle} ArticleInputChange={props.ArticleInputChange} creeFacture={props.creeFacture}/>
+      <ArticleList
+        AddArticle={AddArticle}
+        creeArticle={props.creeArticle}
+        ArticleInputChange={props.ArticleInputChange}
+        creeFacture={props.creeFacture}
+        MontanCount={props.MontanCount}
+      />
     </>
   );
 };
