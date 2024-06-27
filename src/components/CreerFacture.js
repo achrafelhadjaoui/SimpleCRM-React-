@@ -1,9 +1,11 @@
 import React from "react";
 import Banner from "./Banner";
 import ArticleList from "./ArticleList";
+import { v4 as uuidv4 } from 'uuid';
 
 const CreerFacture = (props) => {
   const { idFacture, dateFacture, factureA } = props.creeFacture;
+  console.log(idFacture)
   const { AddArticle } = props;
   return (
     <>
@@ -22,7 +24,7 @@ const CreerFacture = (props) => {
               className="form-control"
               id="idFacture"
               name="idFacture"
-              value={idFacture}
+              value={uuidv4()}
               onChange={props.FactureInputChange}
             />
           </div>

@@ -3,6 +3,7 @@ import FactureList from "./FactureList";
 import CreerFacture from "./CreerFacture";
 
 import FactureDetails from "./FactureDetails";
+import { v4 as uuidv4 } from 'uuid';
 
 class App extends React.Component {
   constructor(props) {
@@ -105,7 +106,7 @@ class App extends React.Component {
     const { idFacture, dateFacture, factureA, articles } = this.state.creeFacture;
     const { Article, Quantite, Prix, Remise, Montant } = this.state.creeArticle;
 
-    if (!idFacture || !dateFacture || !factureA || !articles.length) {
+    if (!dateFacture || !factureA || !articles.length) {
       alert("fill all the data!!!!!!!!!!");
     } 
     // else if (!Article || !Quantite || !Prix || !Remise || !Montant) {
@@ -130,7 +131,7 @@ class App extends React.Component {
     const { Article, Quantite, Prix, Remise, Montant } = this.state.creeArticle;
     const { idFacture, dateFacture, factureA, articles } = this.state.creeFacture;
   
-    if (!idFacture || !dateFacture || !factureA) {
+    if (!dateFacture || !factureA) {
       alert("Fill all the data!");
     } 
     else if (!Article || !Quantite || !Prix || !Remise) {
@@ -143,7 +144,7 @@ class App extends React.Component {
   
       this.setState({
         creeFacture: {
-          idFacture: idFacture,
+          idFacture: uuidv4(),
           dateFacture: dateFacture,
           factureA: factureA,
           articles: updatedArticleList,
